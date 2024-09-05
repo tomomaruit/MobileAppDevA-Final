@@ -14,16 +14,40 @@
         android:text="戻る"
         />
 
-    <EditText
-        android:id="@+id/edittextQuestion"
+    <TextView
+        android:id="@+id/textviewQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="問題文"
+        app:layout_constraintBottom_toTopOf="@id/edittextQuestion"
+        />
+
+    <EditText
+        android:id="@+id/edittextQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/edittextAnswer"
+        />
+
+    <TextView
+        android:id="@+id/textviewAnswer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="解答"
+        app:layout_constraintBottom_toTopOf="@id/edittextAnswer"
         />
 
     <EditText
         android:id="@+id/edittextAnswer"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edittextQuestion"
         />
 
     <Button
@@ -32,6 +56,7 @@
         android:layout_height="wrap_content"
         android:text="登録"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
