@@ -14,6 +14,7 @@ import jp.ac.meijou.android.mobileappdeva_final.databinding.ActivityRegisterBind
 public class Register extends AppCompatActivity {
 
     private ActivityRegisterBinding binding;
+    private PrefDataStore prefDataStore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,9 +22,15 @@ public class Register extends AppCompatActivity {
         EdgeToEdge.enable(this);
         binding = ActivityRegisterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        prefDataStore = PrefDataStore.getInstance(this);
 
         binding.buttonRegister.setOnClickListener(view -> {
-
+            var question = binding.edittextQuestion.getText().toString();
+            prefDataStore.setString("name", question);
+            binding.edittextQuestion.getText().clear();
+            var answer = binding.edittextAnswer.getText().toString();
+            prefDataStore.setString("name", answer);
+            binding.edittextAnswer.getText().clear();
         });
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
