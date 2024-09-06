@@ -7,6 +7,18 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/correctText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="現在の連続正解数:50門"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/addButton"
+        app:layout_constraintBottom_toTopOf="@+id/scroll"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
     <Button
         android:id="@+id/addButton"
         android:layout_width="wrap_content"
