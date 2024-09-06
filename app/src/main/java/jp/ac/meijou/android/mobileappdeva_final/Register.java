@@ -1,5 +1,6 @@
 package jp.ac.meijou.android.mobileappdeva_final;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -31,6 +32,11 @@ public class Register extends AppCompatActivity {
             var answer = binding.edittextAnswer.getText().toString();
             prefDataStore.setString("A", answer);
             binding.edittextAnswer.getText().clear();
+        });
+
+        binding.buttonReturn.setOnClickListener(view -> {
+            var intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
         });
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
