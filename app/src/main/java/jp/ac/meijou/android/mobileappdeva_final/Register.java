@@ -26,10 +26,10 @@ public class Register extends AppCompatActivity {
 
         binding.buttonRegister.setOnClickListener(view -> {
             var question = binding.edittextQuestion.getText().toString();
-            prefDataStore.setString("name", question);
+            prefDataStore.setString("Q", question);
             binding.edittextQuestion.getText().clear();
             var answer = binding.edittextAnswer.getText().toString();
-            prefDataStore.setString("name", answer);
+            prefDataStore.setString("A", answer);
             binding.edittextAnswer.getText().clear();
         });
 
