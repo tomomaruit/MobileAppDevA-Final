@@ -13,6 +13,7 @@
         android:theme="@style/Theme.MobileAppDevAFinal"
         tools:targetApi="31">
         <activity
+            android:name=".Answer"
             android:name=".Register"
             android:exported="true" >
             <intent-filter>
@@ -24,6 +25,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
+
         </activity>
     </application>
 
