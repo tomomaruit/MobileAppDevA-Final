@@ -28,7 +28,7 @@ public class Answer extends AppCompatActivity {
         });
 
         binding.answerButton.setOnClickListener(view -> {
-            var intent = new Intent(this, Register.class);
+            var intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         });
 
