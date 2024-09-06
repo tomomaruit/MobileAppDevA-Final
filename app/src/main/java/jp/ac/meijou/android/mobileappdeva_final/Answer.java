@@ -14,6 +14,7 @@ import jp.ac.meijou.android.mobileappdeva_final.databinding.ActivityAnswerBindin
 public class Answer extends AppCompatActivity {
 
     private ActivityAnswerBinding binding;
+    public static int correctAnswerNum = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,10 +28,11 @@ public class Answer extends AppCompatActivity {
             return insets;
         });
 
+        // 決定ボタンを押すと
         binding.answerButton.setOnClickListener(view -> {
+            correctAnswerNum += 1;      // 正解なら+1
             var intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         });
-
     }
 }
