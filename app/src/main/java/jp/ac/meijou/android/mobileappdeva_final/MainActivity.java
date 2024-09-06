@@ -38,6 +38,6 @@ public class MainActivity extends AppCompatActivity {
 
     protected void onStart(){
         super.onStart();
-        binding.correctText.setText("現在の連続正解数：" + Answer.correctAnswerNum + "門");
+        binding.correctText.setText("現在の連続正解数：" + Answer.correctAnswerNum + "問");
     }
 }
