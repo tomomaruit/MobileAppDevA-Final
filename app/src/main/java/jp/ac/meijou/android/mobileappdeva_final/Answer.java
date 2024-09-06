@@ -2,6 +2,7 @@ package jp.ac.meijou.android.mobileappdeva_final;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,8 +29,16 @@ public class Answer extends AppCompatActivity {
             return insets;
         });
 
-        // 決定ボタンを押すと
+        binding.answerText.setVisibility(View.INVISIBLE);
+        binding.returnButton.setVisibility(View.INVISIBLE);
+
         binding.answerButton.setOnClickListener(view -> {
+            binding.answerText.setVisibility(View.VISIBLE);
+            binding.returnButton.setVisibility(View.VISIBLE);
+        });
+
+        // 戻るボタンを押すと
+        binding.returnButton.setOnClickListener(view -> {
             correctAnswerNum += 1;      // 正解なら+1
             var intent = new Intent(this, MainActivity.class);
             startActivity(intent);
