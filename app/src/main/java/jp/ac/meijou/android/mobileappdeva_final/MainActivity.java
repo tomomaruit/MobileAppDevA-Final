@@ -32,15 +32,17 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             int importance = NotificationManager.IMPORTANCE_DEFAULT;
 
-            NotificationChannel channel = new NotificationChannel("CHANNEL_ID", "サンプルアプリ",importance);
+            NotificationChannel channel = new NotificationChannel("CHANNEL_ID", "MobileAppDevA-Final",importance);
             channel.setDescription("通知の説明を書く");
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
-
         }
 
+        // アプリ起動時に通知を送信
+        notifyTest();
+
         Button button = findViewById(R.id.addButton);
-        button.setOnClickListener(v -> notifyTest());
+        //button.setOnClickListener(v -> notifyTest());
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -63,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
                 notifyTest();
             } else {
                 // 権限が拒否された場合の処理
+
             }
         }
     }
@@ -72,8 +75,8 @@ public class MainActivity extends AppCompatActivity {
         NotificationCompat.Builder builder
                 = new NotificationCompat.Builder(this, "CHANNEL_ID")
                 .setSmallIcon(android.R.drawable.ic_menu_info_details)
-                .setContentTitle("タイトル")
-                .setContentText("メッセージ・メッセージ")
+                .setContentTitle("勉強の時間です❗")
+                .setContentText("仲間たちはどんどん覚えているようです！頑張れ！")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
