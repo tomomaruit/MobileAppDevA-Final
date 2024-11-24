@@ -2,6 +2,7 @@ package jp.ac.meijou.android.mobileappdeva_final;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,7 +15,7 @@ import jp.ac.meijou.android.mobileappdeva_final.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
-    private PrefDataStore prefDataStore;
+//    private PrefDataStore prefDataStore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,17 +23,17 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        prefDataStore = PrefDataStore.getInstance(this);
+//        prefDataStore = PrefDataStore.getInstance(this);
 
-        binding.addButton.setOnClickListener(view -> {
-            var intent = new Intent(this, Register.class);
-            startActivity(intent);
-        });
+//        binding.addButton.setOnClickListener(view -> {
+//            var intent = new Intent(this, Register.class);
+//            startActivity(intent);
+//        });
 
-        prefDataStore.getString("Q")
-                        .ifPresent(Q -> binding.question1.setText(Q));
-        prefDataStore.getString("A")
-                        .ifPresent(A -> binding.answer1.setText(A));
+//        prefDataStore.getString("Q")
+//                        .ifPresent(Q -> binding.question1.setText(Q));
+//        prefDataStore.getString("A")
+//                        .ifPresent(A -> binding.answer1.setText(A));
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -41,8 +42,17 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    protected void onStart(){
-        super.onStart();
-        binding.correctText.setText("現在の連続正解数：" + Answer.correctAnswerNum + "問");
+//    protected void onStart(){
+//        super.onStart();
+//        binding.correctText.setText("現在の連続正解数：" + Answer.correctAnswerNum + "問");
+//    }
+
+    public void Entry(View view) {
+        Intent intent = new Intent(getApplication(),Register.class);
+        // モード指定　空は新規
+        intent.putExtra("KBN", "");
+
+        // 行く
+        startActivity(intent);
     }
 }
