@@ -2,14 +2,17 @@ package jp.ac.meijou.android.mobileappdeva_final;
 
 import static androidx.datastore.core.StorageConnectionKt.readData;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultRegistry;
@@ -28,8 +31,8 @@ public class Register extends AppCompatActivity {
     String kbn = "";
     String toastMessage = "登録しました．戻るを押してください．";
     String toastMessage2 = "登録するものがありません．";
-    String toastMessage3 = "更新しました．戻るを押してください．";
-    String toastMessage4 = "更新するものがありません．";
+//    String toastMessage3 = "更新しました．戻るを押してください．";
+//    String toastMessage4 = "更新するものがありません．";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +40,6 @@ public class Register extends AppCompatActivity {
         EdgeToEdge.enable(this);
         binding = ActivityRegisterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-//        prefDataStore = PrefDataStore.getInstance(this);
         // DB作成
         helper = new MyOpenHelper(getApplicationContext());
 
@@ -50,12 +52,12 @@ public class Register extends AppCompatActivity {
 
         if (KBN.length() != 0) {
             //参照
-            kbn = KBN;
-
-            // ボタンテキスト変更
-            view.setBackgroundColor(Color.YELLOW);
-
-            //既存データ参照
+//            kbn = KBN;
+//
+//            // ボタンテキスト変更
+//            view.setBackgroundColor(Color.YELLOW);
+//
+//            //既存データ参照
 //            readData(KBN);
         } else {
             // 新規登録
@@ -92,7 +94,7 @@ public class Register extends AppCompatActivity {
         finish(); // 画面を閉じる
     }
 
-    private void readData(String read) {
+//    private void readData(String read) {
 //        SQLiteDatabase db = helper.getReadableDatabase();
 //
 //        EditText text1 = findViewById(R.id.editTextText);
@@ -100,8 +102,8 @@ public class Register extends AppCompatActivity {
 //
 //        Cursor cursor = db.query(
 //                "myPasstb",
-//                new String[]{"name","ID","pass"},
-//                "_ID = ?",
+//                new String[]{"que","ans"},
+//                "que = ?",
 //                new String[]{read},
 //                null,null,null
 //        );
@@ -113,5 +115,78 @@ public class Register extends AppCompatActivity {
 //        }
 //
 //        cursor.close();
+//    }
+
+    /**
+     * データを保存する
+     * @param view
+     */
+    public void saveData(View view) {
+        SQLiteDatabase db = helper.getWritableDatabase();
+
+        EditText txt1 = findViewById(R.id.editTextText);
+        EditText txt2 = findViewById(R.id.editTextText2);
+
+        String que = txt1.getText().toString();
+        String ans = txt2.getText().toString();
+
+        ContentValues values = new ContentValues();
+        values.put("que", que);
+        values.put("ans", ans);
+
+        //ボタンが登録の場合
+        if (kbn == "登録") {
+            if (que.length() != 0) {
+                // 新規登録
+                db.insert("myPasstb", null, values);
+                // トースト表示
+                toastMake(toastMessage, 0, +350);
+            } else {
+                // トースト表示
+                toastMake(toastMessage2, 0, +350);
+            }
+            // ボタンが更新の場合
+        }
+//        else {
+//            if (que.length() != 0) {
+//                // 更新
+//                UPData(kbn);
+//                //トースト表示
+//                toastMake(toastMessage3, 0, +350);
+//            } else {
+//                //トースト表示
+//                toastMake(toastMessage4, 0, +350);
+//            }
+//        }
+    }
+
+    /**
+     * データ更新
+     * @param read
+     */
+//    private void UPData(String read) {
+//        SQLiteDatabase db = helper.getReadableDatabase();
+//
+//        EditText txt1 = findViewById(R.id.editTextText);
+//        EditText txt2 = findViewById(R.id.editTextText2);
+//
+//        String que = txt1.getText().toString();
+//        String ans = txt2.getText().toString();
+//
+//        ContentValues upvalue = new ContentValues();
+//        upvalue.put("que",que);
+//        upvalue.put("ans",ans);
+//
+//        db.update("myPasstb",upvalue,"_id=?",new String[]{read});
+//
+//
+//    }
+
+    private void toastMake(String message, int x, int y) {
+        Toast toast = Toast.makeText(this, message, Toast.LENGTH_LONG);
+        // 位置調整
+        toast.setGravity(Gravity.CENTER, x, y);
+        toast.show();
     }
 }
+
