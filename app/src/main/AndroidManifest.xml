@@ -23,11 +23,11 @@
         </activity>
         <activity
             android:name=".Answer"
-            android:exported="true" >
+            android:exported="false" >
         </activity>
         <activity
             android:name=".Register"
-            android:exported="true" >
+            android:exported="false" >
         </activity>
     </application>
 

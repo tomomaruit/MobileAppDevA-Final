@@ -12,11 +12,13 @@ public class MyOpenHelper extends SQLiteOpenHelper {
     // データベース情報を変数に格納
     private static final String DATABASE_NAME = "MyPassDB.db";
     private static final String TABLE_NAME = "myPasstb";
+    private static final String _ID = "_id";
     private static final String Question = "que";
     private static final String Answer = "ans";
 
     private static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + TABLE_NAME + " (" +
+                    _ID + " INTEGER PRIMARY KEY," +
                     Question + " TEXT," +
                     Answer + " TEXT)";
 

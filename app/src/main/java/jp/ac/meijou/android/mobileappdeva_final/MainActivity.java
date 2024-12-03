@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -21,7 +22,6 @@ import jp.ac.meijou.android.mobileappdeva_final.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
-//    private PrefDataStore prefDataStore;
     ListView myListview;
 
     @Override
@@ -30,29 +30,30 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+//        setContentView(R.layout.activity_main);
 
         // リストビュー
-//        myListview = findViewById(R.id.Listview);
-//
+        myListview = findViewById(R.id.Listview);
         // db
-//        MyOpenHelper myOpenHelper = new MyOpenHelper(this);
-//        SQLiteDatabase db = myOpenHelper.getWritableDatabase();
-//
-//        // select
-//        Cursor c = db.rawQuery("select * from myPasstb", null);
-//
-//        //adapterの準備
-//        //表示するカラム名
-//        String[] from = {"que","ans"};
-//
-//        // バインドするViewリソース
-//        int[] to = {android.R.id.text1,android.R.id.text2};
-//
-//        //adapterの生成
-//        SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_2,c,from,to,0);
-//
-//        //バインドして表示
-//        myListview.setAdapter(adapter);
+        MyOpenHelper myOpenHelper = new MyOpenHelper(this);
+        SQLiteDatabase db = myOpenHelper.getWritableDatabase();
+
+        // select
+        Cursor c = db.rawQuery("select * from myPasstb", null);
+
+
+        //adapterの準備
+        //表示するカラム名
+        String[] from = {"_id","que"};
+
+        // バインドするViewリソース
+        int[] to = {android.R.id.text1,android.R.id.text2};
+
+        //adapterの生成
+        SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_2,c,from,to,0);
+
+        //バインドして表示
+        myListview.setAdapter(adapter);
 //
 //        //リストビューをタップした時の各行のデータを取得
 //        myListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
