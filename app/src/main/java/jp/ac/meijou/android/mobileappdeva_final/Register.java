@@ -31,8 +31,8 @@ public class Register extends AppCompatActivity {
     String kbn = "";
     String toastMessage = "登録しました．戻るを押してください．";
     String toastMessage2 = "登録するものがありません．";
-//    String toastMessage3 = "更新しました．戻るを押してください．";
-//    String toastMessage4 = "更新するものがありません．";
+    String toastMessage3 = "更新しました．戻るを押してください．";
+    String toastMessage4 = "更新するものがありません．";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,13 +52,16 @@ public class Register extends AppCompatActivity {
 
         if (KBN.length() != 0) {
             //参照
-//            kbn = KBN;
-//
-//            // ボタンテキスト変更
-//            view.setBackgroundColor(Color.YELLOW);
-//
-//            //既存データ参照
-//            readData(KBN);
+            kbn = KBN;
+
+            //ボタンテキスト更新
+            button.setText("更新");
+
+            // ボタンテキスト変更
+            view.setBackgroundColor(Color.YELLOW);
+
+            //既存データ参照
+            readData(KBN);
         } else {
             // 新規登録
             kbn = "登録";
@@ -94,28 +97,28 @@ public class Register extends AppCompatActivity {
         finish(); // 画面を閉じる
     }
 
-//    private void readData(String read) {
-//        SQLiteDatabase db = helper.getReadableDatabase();
-//
-//        EditText text1 = findViewById(R.id.editTextText);
-//        EditText text2 = findViewById(R.id.editTextText2);
-//
-//        Cursor cursor = db.query(
-//                "myPasstb",
-//                new String[]{"que","ans"},
-//                "que = ?",
-//                new String[]{read},
-//                null,null,null
-//        );
-//        cursor.moveToFirst();
-//
-//        for (int i = 0; i < cursor.getCount(); i++) {
-//            text1.setText(cursor.getString(0));
-//            text2.setText(cursor.getString(1));
-//        }
-//
-//        cursor.close();
-//    }
+    private void readData(String read) {
+        SQLiteDatabase db = helper.getReadableDatabase();
+
+        EditText text1 = findViewById(R.id.editTextText);
+        EditText text2 = findViewById(R.id.editTextText2);
+
+        Cursor cursor = db.query(
+                "myPasstb",
+                new String[]{"que","ans"},
+                "_ID = ?",
+                new String[]{read},
+                null,null,null
+        );
+        cursor.moveToFirst();
+
+        for (int i = 0; i < cursor.getCount(); i++) {
+            text1.setText(cursor.getString(0));
+            text2.setText(cursor.getString(1));
+        }
+
+        cursor.close();
+    }
 
     /**
      * データを保存する
@@ -147,40 +150,40 @@ public class Register extends AppCompatActivity {
             }
             // ボタンが更新の場合
         }
-//        else {
-//            if (que.length() != 0) {
-//                // 更新
-//                UPData(kbn);
-//                //トースト表示
-//                toastMake(toastMessage3, 0, +350);
-//            } else {
-//                //トースト表示
-//                toastMake(toastMessage4, 0, +350);
-//            }
-//        }
+        else {
+            if (que.length() != 0) {
+                // 更新
+                UPData(kbn);
+                //トースト表示
+                toastMake(toastMessage3, 0, +350);
+            } else {
+                //トースト表示
+                toastMake(toastMessage4, 0, +350);
+            }
+        }
     }
 
     /**
      * データ更新
      * @param read
      */
-//    private void UPData(String read) {
-//        SQLiteDatabase db = helper.getReadableDatabase();
-//
-//        EditText txt1 = findViewById(R.id.editTextText);
-//        EditText txt2 = findViewById(R.id.editTextText2);
-//
-//        String que = txt1.getText().toString();
-//        String ans = txt2.getText().toString();
-//
-//        ContentValues upvalue = new ContentValues();
-//        upvalue.put("que",que);
-//        upvalue.put("ans",ans);
-//
-//        db.update("myPasstb",upvalue,"_id=?",new String[]{read});
-//
-//
-//    }
+    private void UPData(String read) {
+        SQLiteDatabase db = helper.getReadableDatabase();
+
+        EditText txt1 = findViewById(R.id.editTextText);
+        EditText txt2 = findViewById(R.id.editTextText2);
+
+        String que = txt1.getText().toString();
+        String ans = txt2.getText().toString();
+
+        ContentValues upvalue = new ContentValues();
+        upvalue.put("que",que);
+        upvalue.put("ans",ans);
+
+        db.update("myPasstb",upvalue,"_id=?",new String[]{read});
+
+
+    }
 
     private void toastMake(String message, int x, int y) {
         Toast toast = Toast.makeText(this, message, Toast.LENGTH_LONG);

@@ -54,26 +54,26 @@ public class MainActivity extends AppCompatActivity {
 
         //バインドして表示
         myListview.setAdapter(adapter);
-//
-//        //リストビューをタップした時の各行のデータを取得
-//        myListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long l) {
-//                //各要素を取得
-//                //que
-//                String s1 = ((TextView)view.findViewById(android.R.id.text1)).getText().toString();
-//                //ans
-////                String s2 = ((TextView)view.findViewById(android.R.id.text2)).getText().toString();
-//
-//                //参照更新へ
-//                Intent intent = new Intent(getApplication(), Register.class);
-//
-//                //モード指定 _idを渡す
-//                intent.putExtra("KBN",s1);
-//
-//                startActivity(intent);
-//            }
-//        });
+
+        //リストビューをタップした時の各行のデータを取得
+        myListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int i, long l) {
+                //各要素を取得
+                //_id
+                String s1 = ((TextView)view.findViewById(android.R.id.text1)).getText().toString();
+                //que
+                // String s2 = ((TextView)view.findViewById(android.R.id.text2)).getText().toString();
+
+                //参照更新へ
+                Intent intent = new Intent(getApplication(), Register.class);
+
+                //モード指定 _idを渡す
+                intent.putExtra("KBN",s1);
+
+                startActivity(intent);
+            }
+        });
 
 //        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
 //            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -88,20 +88,20 @@ public class MainActivity extends AppCompatActivity {
 //    }
 
     //リターン時
-//    @Override
-//    protected void onRestart() {
-//        super.onRestart();
-//        reload();
-//    }
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        reload();
+    }
 
-//    private void reload() {
-//        Intent intent = getIntent();
-//        overridePendingTransition(0,0);
-//        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-//        finish();
-//        overridePendingTransition(0,0);
-//        startActivity(intent);
-//    }
+    private void reload() {
+        Intent intent = getIntent();
+        overridePendingTransition(0,0);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        finish();
+        overridePendingTransition(0,0);
+        startActivity(intent);
+    }
 
     // 登録ボタンを押したときは新規登録画面へ遷移
     public void Entry(View view) {
