@@ -83,6 +83,12 @@ public class MainActivity extends AppCompatActivity {
 
                 //参照更新へ
                 Intent intent = new Intent(getApplication(), Register.class);
+                //モード指定 _idを渡す
+                intent.putExtra("KBN",s1);
+
+                startActivity(intent);
+            }
+        });
 
         // 通知を制御する
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -98,18 +104,15 @@ public class MainActivity extends AppCompatActivity {
         // アプリ起動時に通知を送る
         notifyTest();
 
+        /*
         binding.addButton.setOnClickListener(view -> {
             var intent = new Intent(this, Register.class);
             startActivity(intent);
         });
+        */
 
 
-                //モード指定 _idを渡す
-                intent.putExtra("KBN",s1);
 
-                startActivity(intent);
-            }
-        });
 
 
 //        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
