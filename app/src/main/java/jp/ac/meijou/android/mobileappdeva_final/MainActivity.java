@@ -148,6 +148,16 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // 登録ボタンを押したときは新規登録画面へ遷移
+    public void Entry(View view) {
+        Intent intent = new Intent(getApplication(),Register.class);
+        // モード指定　空は新規
+        intent.putExtra("KBN", "");
+
+        // 行く
+        startActivity(intent);
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -177,15 +187,5 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.POST_NOTIFICATIONS}, REQUEST_CODE);
         }
 
-    }
-
-    // 登録ボタンを押したときは新規登録画面へ遷移
-    public void Entry(View view) {
-        Intent intent = new Intent(getApplication(),Register.class);
-        // モード指定　空は新規
-        intent.putExtra("KBN", "");
-
-        // 行く
-        startActivity(intent);
     }
 }
