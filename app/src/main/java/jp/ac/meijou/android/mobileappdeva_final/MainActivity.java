@@ -32,9 +32,9 @@ import jp.ac.meijou.android.mobileappdeva_final.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
-    // 定数（通知送信時間の設定）
-    private static final int DAILY_NOTIFICATION_HOUR = 8;  // 通知を送る時間（時）
-    private static final int DAILY_NOTIFICATION_MINUTE = 8;  // 通知を送る時間（分）
+    // 定数（通知送信時間の設定）（デバッグ用）
+    private static final int DAILY_NOTIFICATION_HOUR = 9;  // 通知を送る時間（時）
+    private static final int DAILY_NOTIFICATION_MINUTE = 0;  // 通知を送る時間（分）
 
     // 定数
     private static final String PREFS_NAME = "NotificationPrefs";
