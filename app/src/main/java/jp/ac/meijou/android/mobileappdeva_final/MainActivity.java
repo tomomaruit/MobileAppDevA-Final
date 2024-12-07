@@ -32,6 +32,10 @@ import jp.ac.meijou.android.mobileappdeva_final.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
+    // 定数（通知送信時間の設定）
+    private static final int DAILY_NOTIFICATION_HOUR = 8;  // 通知を送る時間（時）
+    private static final int DAILY_NOTIFICATION_MINUTE = 8;  // 通知を送る時間（分）
+
     // 定数
     private static final String PREFS_NAME = "NotificationPrefs";
     private static final String KEY_NOTIFICATION_SENT = "notification_sent";
@@ -173,9 +177,9 @@ public class MainActivity extends AppCompatActivity {
         */
 
 
-        // デバッグ用に固定時間を設定
-        calendar.set(Calendar.HOUR_OF_DAY, 7);
-        calendar.set(Calendar.MINUTE, 46);
+        // 定数を使用して通知時間を設定
+        calendar.set(Calendar.HOUR_OF_DAY, DAILY_NOTIFICATION_HOUR);
+        calendar.set(Calendar.MINUTE, DAILY_NOTIFICATION_MINUTE);
         calendar.set(Calendar.SECOND, 0);
 
         if (alarmManager != null) {
