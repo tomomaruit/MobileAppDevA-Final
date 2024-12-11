@@ -12,6 +12,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -191,5 +192,32 @@ public class Register extends AppCompatActivity {
         toast.setGravity(Gravity.CENTER, x, y);
         toast.show();
     }
+
+    /**
+     * ランダムにデータを取得する
+     */
+    public void getRandomData(TextView questionText, TextView answerText) {
+        SQLiteDatabase db = helper.getReadableDatabase();
+
+        // クエリ実行
+        Cursor cursor = db.rawQuery("SELECT que, ans FROM myPasstb ORDER BY RANDOM() LIMIT 1", null);
+
+        if (cursor.moveToFirst()) {
+            // 結果を取得
+            String que = cursor.getString(0);
+            String ans = cursor.getString(1);
+
+            questionText.setText(que);
+            answerText.setText(ans);
+
+            // トーストで確認表示
+            //toastMake("ランダムデータを取得しました。", 0, +350);
+        } else {
+            //toastMake("データが存在しません。", 0, +350);
+        }
+
+        cursor.close();
+    }
+
 }
 
