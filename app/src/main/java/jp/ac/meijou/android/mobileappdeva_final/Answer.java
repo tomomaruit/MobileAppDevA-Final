@@ -3,31 +3,31 @@ package jp.ac.meijou.android.mobileappdeva_final;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import jp.ac.meijou.android.mobileappdeva_final.databinding.ActivityAnswerBinding;
+import jp.ac.meijou.android.mobileappdeva_final.DatabaseHelper;
 
 public class Answer extends AppCompatActivity {
-
     private ActivityAnswerBinding binding;
-    public static int correctAnswerNum = 0;
+    private DatabaseHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityAnswerBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        EdgeToEdge.enable(this);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+        dbHelper = new DatabaseHelper(this);
+
+        // ランダムデータを取得
+        TextView questionText = findViewById(R.id.questionText);
+        TextView answerText = findViewById(R.id.answerText);
+        String[] randomData = dbHelper.getRandomData();
+        questionText.setText(randomData[0]);
+        answerText.setText(randomData[1]);
 
         binding.answerText.setVisibility(View.INVISIBLE);
         binding.returnButton.setVisibility(View.INVISIBLE);
@@ -37,9 +37,7 @@ public class Answer extends AppCompatActivity {
             binding.returnButton.setVisibility(View.VISIBLE);
         });
 
-        // 戻るボタンを押すと
         binding.returnButton.setOnClickListener(view -> {
-            correctAnswerNum += 1;      // 正解なら+1
             var intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         });
